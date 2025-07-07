@@ -62,16 +62,16 @@ def show_dictionary_section(diccionario):
         df_filtrado = df_filtrado[df_filtrado['variable'] == variable_seleccionada]
     
     # Show summary statistics
-    col_stats1, col_stats2, col_stats3 = st.columns(3)
-    with col_stats1:
-        st.metric("Variables Únicas", len(diccionario['variable'].unique()))
-    with col_stats2:
-        st.metric("Tipos de Datos", len(diccionario['tipo'].dropna().unique()))
-    with col_stats3:
-        st.metric("Registros Mostrados", len(df_filtrado))
+#    col_stats1, col_stats2, col_stats3 = st.columns(3)
+#    with col_stats1:
+#        st.metric("Variables Únicas", len(diccionario['variable'].unique()))
+#    with col_stats2:
+#        st.metric("Tipos de Datos", len(diccionario['tipo'].dropna().unique()))
+#    with col_stats3:
+#        st.metric("Registros Mostrados", len(df_filtrado))
     
     # Variable categories explanation
-    with st.expander("📝 Categorías de las Variables", expanded=False):
+    with st.expander("Categorías de las Variables", expanded=False):
         st.markdown("""
         **Variables Demográficas:**
         - **PAIS**: País de la encuesta
