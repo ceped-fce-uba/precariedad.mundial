@@ -15,8 +15,8 @@ st.set_page_config(page_title="Precariedad Mundial",
 
 page_selection = option_menu(
             None,  # No menu title
-            ["Información", "Tasas de precariedad", "Distribucion empleo", "Salarios","Metadatos"],  # Menu options
-            icons=["info-circle", "bar-chart-steps", "pie-chart", "arrow-up-circle","file-text"],  # Icons for each option
+            ["Información", "Distribucion empleo","Tasas de precariedad",  "Salarios","Metadatos"],  # Menu options
+            icons=["info-circle", "pie-chart","bar-chart-steps", "arrow-up-circle","file-text"],  # Icons for each option
             menu_icon="cast",  
             default_index=0, 
             orientation="horizontal")

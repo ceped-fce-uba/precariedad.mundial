@@ -3,32 +3,38 @@ import pandas as pd
 from PIL import Image
 
 def show_page_info():
-    st.title("🌍 Proyecto Precariedad Mundial")
+    st.markdown("<h1 style='text-align: center;'>Proyecto Precariedad Mundial</h1>", unsafe_allow_html=True)
     st.markdown("### Centro de Estudios sobre Población, Empleo y Desarrollo (CEPED - IIEP – UBA)")
     
     # Logo and introduction
-    col_intro1, col_intro2 = st.columns([1, 4])
+    col_intro1, col_intro2 = st.columns([1, 5])
     with col_intro1:
         try:
             logo = Image.open("app/logo_ceped.png")
-            st.image(logo, width=150)
+            st.image(logo, width=200)
         except:
             st.info("Logo CEPED")
     
     with col_intro2:
-        st.markdown("""
-        El proyecto **Precariedad Mundial** tiene como objetivo aportar argumentos y evidencias empíricas 
-        sobre la incidencia de la precariedad laboral a lo largo del mundo, utilizando microdatos de 
-        encuestas de hogares oficiales de distintos países y convirtiéndolos en un dataframe unificado 
-        con información homogeneizada.
-        """)
+        st.markdown(
+        """
+        <div style='text-align: justify'>
+        El proyecto Precariedad Mundial tiene como objetivo aportar argumentos y evidencias empíricas 
+        sobre las estructuras de los mercados de trabajo y la incidencia de la precariedad laboral en distintos países del mundo. Para ello, se homogeneizan microdatos provenientes de 
+        encuestas de hogares oficiales creando un Dataset unificado, orientado a la generación de estadísticas comparables entre países.
+        Así, se espera que el proyecto contribuya al intercambio sobre criterios y enfoques para procesar estadísticas laborales a nivel global.
+        Esta aplicación sintetiza la metodología de construcción del dataset y permite visualizar diversas estadísticas derivadas del mismo.             
+        </div>
+        """,
+        unsafe_allow_html=True
+        )
     
     # Main sections with tabs
     tab1, tab2, tab3, tab4 = st.tabs([
-        "📊 Sobre el Proyecto", 
+        "📊 Sobre el Dataset", 
         "🔬 Metodología", 
-        "📈 Ejemplos de Uso",
-        "📚 Publicaciones"
+        "📚 Publicaciones",
+        "📈 Ejemplos de Uso"
     ])
     
     with tab1:
@@ -38,45 +44,25 @@ def show_page_info():
         show_methodology()
     
     with tab3:
-        show_examples()
+        show_publications()
     
     with tab4:
-        show_publications()
+        show_examples()
 
 def show_project_info():
-    st.header("📊 Información General del Proyecto")
     
     # Project description
     st.markdown("""
-    ### 🎯 Objetivo
-    Aportar argumentos y evidencias empíricas sobre la incidencia de la precariedad laboral a nivel mundial, 
-    fomentando el intercambio sobre criterios y enfoques para procesar estadísticas laborales.
-    
-    ### 📋 Características del Dataset
-    - **Cobertura**: 16+ países de América Latina, Europa, Asia y América del Norte
+     
+    ### Características del Dataset
+    - **Cobertura**: 30 países (13 de América Latina, 15 de Europa, China y Estados Unidos)
     - **Período**: 2018-2019 (principalmente)
     - **Población objetivo**: Empleo urbano
     - **Variables principales**: 4 dimensiones de precariedad laboral + variables estructurales
     """)
     
-    # Survey table
-    st.subheader("🗂️ Encuestas Procesadas por País")
-    
-    surveys_data = {
-        'País': ['Argentina', 'Bolivia', 'Brasil', 'Chile', 'China', 'Colombia', 'Costa Rica', 
-                'Ecuador', 'El Salvador', 'Estados Unidos', 'Europa*', 'Guatemala', 'México', 
-                'Paraguay', 'Perú', 'Uruguay'],
-        'Encuesta': ['EPH', 'ECE', 'PNAD Contínua', 'ENE-ESI', 'CHIP', 'GEIH', 'ENH',
-                    'ENEMDU', 'ENH', 'CPS', 'Eurostat LFS', 'ENEI', 'ENOE', 'EPHC', 'ENAHO', 'ECH'],
-        'Año': [2019, 2019, 2019, 2019, 2018, 2019, 2019, 2019, 2019, 2018, 2018, 2019, 2019, 2019, 2019, 2019]
-    }
-    
-    df_surveys = pd.DataFrame(surveys_data)
-    st.dataframe(df_surveys, use_container_width=True, hide_index=True)
-    st.caption("*Europa incluye: Grecia, Polonia, Italia, Portugal, España, Austria, Reino Unido, Países Bajos, Noruega, Francia, Dinamarca, Suecia y Alemania")
-    
-    # Variables description
-    st.subheader("🔍 Variables Principales del Dataset")
+        # Variables description
+    st.subheader("Variables Principales")
     
     col1, col2 = st.columns(2)
     
@@ -107,13 +93,31 @@ def show_project_info():
         - **ING_PPA**: Ingreso en paridad de poder adquisitivo
         """)
 
+    # Survey table
+    st.subheader("Encuestas Procesadas por País")
+    
+    surveys_data = {
+        'País': ['Argentina', 'Bolivia', 'Brasil', 'Chile', 'China', 'Colombia', 'Costa Rica', 
+                'Ecuador', 'El Salvador', 'Estados Unidos', 'Europa*', 'Guatemala', 'México', 
+                'Paraguay', 'Perú', 'Uruguay'],
+        'Encuesta': ['EPH', 'ECE', 'PNAD Contínua', 'ENE-ESI', 'CHIP', 'GEIH', 'ENH',
+                    'ENEMDU', 'ENH', 'CPS', 'Eurostat LFS', 'ENEI', 'ENOE', 'EPHC', 'ENAHO', 'ECH'],
+        'Año': [2019, 2019, 2019, 2019, 2018, 2019, 2019, 2019, 2019, 2018, 2018, 2019, 2019, 2019, 2019, 2019]
+    }
+    
+    df_surveys = pd.DataFrame(surveys_data)
+    st.dataframe(df_surveys, use_container_width=True, hide_index=True)
+    st.caption("*Europa incluye: Grecia, Polonia, Italia, Portugal, España, Austria, Reino Unido, Países Bajos, Noruega, Francia, Dinamarca, Suecia y Alemania")
+    
+
+
 def show_methodology():
-    st.header("🔬 Aclaraciones Metodológicas")
+    st.header("Aclaraciones Metodológicas")
     
     # General methodology
     st.subheader("📋 Decisiones Metodológicas Generales")
     
-    with st.expander("🎯 Definición de Precariedad Laboral", expanded=True):
+    with st.expander("Definición de Precariedad Laboral", expanded=True):
         st.markdown("""
         La noción de **"empleo precario"** no es unívoca en la literatura. En nuestra base de datos 
         recabamos **4 expresiones de la precariedad** que pueden evaluarse en la mayoría de países:
@@ -133,8 +137,7 @@ def show_methodology():
         
         **Variables estructurales clave:**
         - **Tamaño del establecimiento**: Pequeño (≤10), Mediano (11-49), Grande (≥50)
-        - **Calificación del puesto**: Alta, Media, Baja
-        - **Categoría ocupacional**: Asalariado, Cuentapropista, Patrón
+        - **Calificación del puesto**: Alta, Media, Baja (skill levels de Clasificación ISCO-08)
         """)
     
     # Country-specific notes
@@ -159,7 +162,7 @@ def show_methodology():
         """)
 
 def show_examples():
-    st.header("📈 Ejemplos de Uso del Dataset")
+    st.header("Ejemplos de Uso del Dataset")
     
     st.markdown("""
     Esta sección presenta ejemplos prácticos de cómo utilizar la base de datos homogeneizada 
@@ -235,11 +238,10 @@ expresiones_pais <- asalariados %>%
     """)
 
 def show_publications():
-    st.header("📚 Publicaciones y Referencias")
+    st.header("Publicaciones y Referencias")
     
     st.markdown("""
-    Si utilizas información de este proyecto, te pedimos que cites este repositorio 
-    o alguna de nuestras publicaciones académicas:
+    Si utilizas información de este proyecto, te pedimos que cites alguna de nuestras publicaciones académicas:
     """)
     
     # Publications

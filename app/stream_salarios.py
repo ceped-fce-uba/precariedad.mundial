@@ -18,7 +18,7 @@ def show_page_salarios():
         'sal_median': 'Mediana del salario (muestral)', 
     }
 
-    st.title("📊 Precariedad Laboral Mundial")
+    st.title("Salarios en Paridad de Poder Adquisitivo")
     # Sidebar for filters
     with st.sidebar:
         st.header("Filtros")

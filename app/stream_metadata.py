@@ -9,19 +9,8 @@ def fetch_metadata():
  
 def show_page_metadata():
     diccionario, homogeneizacion = fetch_metadata()
-    
-    # Header with logo and title
-    col_header1, col_header2 = st.columns([1, 4])
-    with col_header1:
-        try:
-            logo = Image.open("app/logo_ceped.png")
-            st.image(logo, width=120)
-        except:
-            st.info("Logo CEPED")
-    
-    with col_header2:
-        st.title("📋 Metadatos del Proyecto")
-        st.markdown("### Variables y Metodología de Homogeneización")
+    st.markdown("<h1 style='text-align: center;'>Metadatos del Proyecto</h1>", unsafe_allow_html=True)
+    st.markdown("### Variables y Metodología de Homogeneización")
     
     # Introduction
     st.markdown("""

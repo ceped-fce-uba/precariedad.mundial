@@ -21,26 +21,11 @@ def show_page_preca():
     }
     col0a, col0b = st.columns([6,2])
     with col0a:
-        st.title("📊 Precariedad Laboral Mundial")
-        st.markdown("### Análisis comparativo de las condiciones de empleo en el mundo")
+        st.title("Tasas de precariedad por país")
         st.markdown("""
-        Esta aplicación presenta datos del proyecto **Precariedad Mundial** del Centro de Estudios sobre 
-        Población, Empleo y Desarrollo (CEPED - IIEP – UBA), que analiza la incidencia de la precariedad 
-        laboral a nivel mundial utilizando microdatos de encuestas de hogares oficiales.
+        Esta sección permite seleccionar una de las dimensiones de la precariedad laboral y explorar su incidencia en cada país, de manera agregado o aplicando una variable de corte.
         """)
     with col0b:
-        logo = Image.open("app/logo_ceped.png")
-        st.image(logo, width=120, output_format="PNG", channels="RGBA",  use_container_width=False)
-        st.markdown(
-            """
-            <style>
-            img {
-                opacity: 0.7 !important;
-            }
-            </style>
-            """,
-            unsafe_allow_html=True,
-        )
         st.markdown("### 🔍 Variables de Precariedad Laboral")
         with st.expander("📖 Estas son las dimensiones de la precariedad laboral que analizamos", expanded=False):
             st.markdown("""
@@ -80,7 +65,7 @@ def show_page_preca():
         st.session_state.paises_seleccionados_preca = paises_seleccionados
     
     df_filtrado = dframe[(dframe.variable_interes == categoria) & (dframe.PAIS.isin(paises_seleccionados))]
-    st.markdown(f"### Distribución del empleo según: **{categoria}**")
+    st.markdown(f"### Tasa de precariedad laboral según: **{categoria}**")
     st.markdown(f"*Variable analizada: {variables_preca_dict[preca_key]}*")
     
     chart_data = pd.DataFrame(
