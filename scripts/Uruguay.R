@@ -80,5 +80,5 @@ Base <- URU %>%
   ) %>%
   select(variables)
 
-saveRDS(Base, "bases_homog/uruguay.RDS")
+saveRDS(Base, "bases_homog/uruguay.rds")
 

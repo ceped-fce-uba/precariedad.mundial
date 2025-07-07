@@ -2,10 +2,12 @@
 options(scipen=99)
 library(tidyverse)
 library(openxlsx)
+library(haven)
 
 rutas <- list.files("Bases_homog/",full.names = T,pattern = ".rds")
 Base <- data.frame()
-for(i in rutas){
+
+for(i in rutas[c(1,3:9,11:18)]){
   base_temp<- readRDS(i) %>%
     mutate(PERIODO = as.character(PERIODO),
            EDAD = as.numeric(EDAD),

@@ -75,7 +75,7 @@ base_homog <- colombia %>%
     SECTOR = case_when(P6430  %in%  c(1,4,5,7)~ "Priv",
                        P6430  %in%  c(2)~ "Pub",
                        P6430  %in%  c(3)~ "SD",
-                       TRUE ~"Resto"),
+                       TRUE ~ NA),
     PRECASEG =  case_when(P6920 == 1 ~ 0,
                           P6920 == 2 ~ 1),
     PRECAREG =  case_when(P6440 == 1 & P6450 == 2 ~ 0,
