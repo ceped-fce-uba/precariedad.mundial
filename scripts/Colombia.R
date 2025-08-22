@@ -2,9 +2,9 @@ library(tidyverse)
 library(foreign)
 library(RVerbalExpressions)
 # 
-# data.2019 <- data.frame(
-#   ruta = list.files("../bases/Colombia/2019/",recursive = T))
-# 
+#  data.2019 <- data.frame(
+#    ruta = list.files("../precariedad-bases-scripts/bases/Colombia/2019/",recursive = T))
+#  
 # hasta.el.punto<- rx() %>%
 #   rx_anything_but(".")
 # 
@@ -16,10 +16,10 @@ library(RVerbalExpressions)
 # for(mes_loop in unique(data.2019.cabecera.ocup$mes)){
 # 
 # print(mes_loop)
-# #mes <- str_extract(string = base,pattern = hasta.el.punto)
-# rutas <-   data.2019.cabecera.ocup %>% 
+#mes <- str_extract(string = base,pattern = hasta.el.punto)
+# rutas <-   data.2019.cabecera.ocup %>%
 #     filter(mes == mes_loop)
-#   
+# 
 #   
 # colombia_general<- read.spss(file = paste0('../bases/Colombia/2019/',rutas$ruta[1]),
 #                      reencode = "UTF-8",

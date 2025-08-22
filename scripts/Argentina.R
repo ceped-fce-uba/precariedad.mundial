@@ -26,7 +26,7 @@ crosstable_cno2001_isco08<- occupationcross::crosstable_cno2001_isco08
 ####ARG Variables####
 Variables1719  <- c("CODUSU","NRO_HOGAR","COMPONENTE","ANO4","TRIMESTRE" ,"AGLOMERADO","H15",
     "CH04", "CH06","CH08","CH12","CH13","CH14","CH15","CH16","CH15_COD","ESTADO","CAT_OCUP","INTENSI",
-    "PP04A", "PP04B_COD","PP07H","P21","PONDERA","PP04D_COD","PP04C",
+    "PP04A", "PP04B_COD","PP07H","P21","PONDERA","PP04D_COD","PP04C","PP04B1",
     "PP07A","PP07C","PP05B2_ANO","PP04B3_ANO","PP07E","NIVEL_ED","PONDIIO","DECOCUR",
     "PP11D_COD","PP04C","PP04C99","PP03G","PP3E_TOT")
   
@@ -175,8 +175,8 @@ base_homog <- bases %>%
       PP07C ==  2 ~ 0),
     PRECASALUD = NA,
     ING = case_when(P21 > 0 ~ P21),
-    SECTOR = case_when(PP04B_COD %in% c(75,7500:7599)~"Pub",
-                       PP04B_COD %in% c(95,9500:9599)~"SD",
+    SECTOR = case_when(PP04A %in% 1~"Pub",
+                       PP04B1 %in% 1~"SD",
                        TRUE ~"Priv"),
     WEIGHT = as.integer(PONDERA),
     WEIGHT_W = as.integer(PONDIIO)
@@ -189,7 +189,8 @@ variables<- c("PAIS","ANO","PERIODO","WEIGHT","SEXO","EDAD",
 base_homog_final <- base_homog %>% 
   select(all_of(variables))
 
-saveRDS(base_homog_final,file = "bases_homog/argentina_2019_2024.rds")
+saveRDS(base_homog_final %>% filter(ANO == 2019),file = "bases_homog/argentina.rds")
+saveRDS(base_homog_final %>% filter(ANO == 2024),file = "bases_homog/argentina_2024.rds")
 
 ####ARG categorias####
 Base_EPH.cat <- bases_bind %>%
