@@ -39,11 +39,20 @@ diccionario_paises <- data.frame(
 
 # 2024####
 #############Lectura y pool de bases#########
-base_spss<- read.spss(file = paste0('../bases/Ecuador/',"enemdu_persona_2024_lll_trimestre.sav"),
+base_spss<- read.spss(file = paste0('../precariedad-bases-scripts/bases/Ecuador/',"enemdu_persona_2024_lll_trimestre.sav"),
           reencode = "UTF-8",use.value.labels = T,
           to.data.frame = T) 
           #
+
+base_spss_19<- read.spss(file = paste0('../precariedad-bases-scripts/bases/Ecuador/',"enemdu_personas_2019_09.sav"),
+                      reencode = "UTF-8",use.value.labels = T,
+                      to.data.frame = T) 
 summary(base_spss$fexp)
+summary(base_spss$p42)
+summary(base_spss$p43)
+summary(base_spss$condact)
+summary(base_spss_19$p43)
+summary(base_spss_19$p43)
 ruta <- "../precariedad-bases-scripts/bases/Ecuador/"
 archivos<- list.files(ruta)
  
@@ -73,6 +82,7 @@ ecuador2024 <-   bind_rows(ecuador2024,ecuador)
 }
 # saveRDS(ecuador2024,"Bases/ecuador_2024.RDS")
 ecuador2024 <- readRDS("Bases/ecuador_2024.RDS")
+ecuador2019 <- readRDS("Bases/ecuador_2019.RDS")
 ####Ecuador####
 ##Miro variables##
 # prueba.salario <- ecuador %>%
@@ -82,7 +92,7 @@ ecuador2024 <- readRDS("Bases/ecuador_2024.RDS")
 #   ggplot(aes(x = ingrl)) +
 #   geom_histogram()
 # salarios<- data.frame(table(prueba.salario$ingrl))
- table(ecuador$p10a)
+ table(ecuador$p43)
 # table(ecuador2$area)
 # table(ecuador$p27)
 # table(ecuador2$p27)
@@ -105,7 +115,7 @@ table(ecuador2019$periodo)
 base_homog <- ecuador2019 %>% 
   mutate(uno = 1) %>% 
   filter(area == 1) %>% #Urbanos
-  filter(condact %in% 2:7) %>% #Ocupados
+  filter(condact %in% 1:6) %>% #Ocupados
  # filter(p42 %in% c(2,3,4,6)) %>% # CP, y asalariados privados (incluye jornalero y terciarizado)
   #   filter(p42 == 2) %>% # Asalariad
   mutate(
@@ -125,15 +135,16 @@ base_homog <- ecuador2019 %>%
                         TRUE ~"Resto"),
     PRECASEG =  case_when(p44f == 1 ~ 0,# "Recibe seguo social",
                           p44f == 2 ~ 1),
-    PRECAREG = NA,
+    PRECAREG = case_when(p49 %in% 1 ~ 0, #Empresa sin Registro Único de Contribuyentes
+                          p49 %in% 2:3 ~ 1),#Empresa con Registro Único de Contribuyentes
     PRECASALUD = NA,
-    registracion =  NA,
     part.time.inv = case_when(p24 < 35 & p27%in% 1:3 ~ "Part Involunt",
                               p24 < 35 & p27 %in% 4 ~ "Part Volunt",
                               p24 >= 35 ~ "Full Time"), 
     PRECAPT = case_when(part.time.inv == "Part Involunt"~1,
                         part.time.inv %in%  c("Part Volunt","Full Time")~0),
-    PRECATEMP = NA,
+    PRECATEMP = case_when(p43 %in% 1:2 ~ 0,
+                          p43 %in% 3:6 ~ 1),
     # tiempo.determinado = case_when(
     #   Estabili == 10 ~ "No",
     #   Estabili != 10 ~ "Si"),
@@ -142,6 +153,9 @@ base_homog <- ecuador2019 %>%
       ISCO.1.digit %in% 1:3 ~ "Alta",
       ISCO.1.digit %in% 4:8 ~ "Media",
       ISCO.1.digit %in% 9 ~ "Baja"),
+    MIGRA_INT = NA,
+    MIGRA_RECIENTE = NA,
+    MIGRA_ORIGEN = NA,
     TAMA =
       case_when(
         p47b %in% 1:9 ~ "Pequeño", # 1 a 9
@@ -156,6 +170,9 @@ base_homog <- ecuador2019 %>%
                      p10a %in% 6:7 ~ "Secundaria",
                      p10a %in% 8:10 ~ "Terciaria"
                      ),
+    HORAS_PPAL = p51a,
+    HORAS_OTRAS =p51b+p51c,
+    
   ) %>% 
   rename(
     WEIGHT = fexp,
@@ -165,22 +182,22 @@ base_homog <- ecuador2019 %>%
 variables<- c("PAIS","ANO","PERIODO","WEIGHT","SEXO","EDAD",
               "CATOCUP","COND","SECTOR","PRECAPT","EDUC",
               "MIGRA_INT","MIGRA_RECIENTE","MIGRA_ORIGEN",
-              "PRECAREG","PRECATEMP","PRECASALUD","PRECASEG","TAMA","CALIF","ING") 
+              "PRECAREG","PRECATEMP","PRECASALUD","PRECASEG","TAMA","CALIF","ING","HORAS_PPAL","HORAS_OTRAS") 
 
 base_homog_final <- base_homog %>% 
   select(all_of(variables))
 
-saveRDS(base_homog_final,file = "bases_homog/ecuador.rds")
+saveRDS(base_homog_final,file = "bases_homog/ecuador_2019.rds")
 
 #2024####
 diccionario_paises <- diccionario_paises %>% mutate(
   p15ab = as.integer(p15ab))
 
 base_homog_24 <- ecuador2024 %>% 
-  left_join(diccionario_paises) %>% 
+  left_join(diccionario_paises %>% mutate(p15ab = as.integer(p15ab))) %>% 
   mutate(uno = 1) %>% 
   filter(area == 1) %>% #Urbanos
-  filter(condact %in% 2:7) %>% #Ocupados
+  filter(condact %in% 1:6) %>% #Ocupados
   # filter(p42 %in% c(2,3,4,6)) %>% # CP, y asalariados privados (incluye jornalero y terciarizado)
   #   filter(p42 == 2) %>% # Asalariad
   mutate(
@@ -204,7 +221,8 @@ base_homog_24 <- ecuador2024 %>%
                         TRUE ~"Resto"),
     PRECASEG =  case_when(p44f == 1 ~ 0,# "Recibe seguo social",
                           p44f == 2 ~ 1),
-    PRECAREG = NA,
+    PRECAREG = case_when(p49 %in% 1 ~ 0, #Empresa sin Registro Único de Contribuyentes
+                         p49 %in% 2:3 ~ 1),#Empresa con Registro Único de Contribuyentes
     PRECASALUD = NA,
     registracion =  NA,
     part.time.inv = case_when(p24 < 35 & p27%in% 1:3 ~ "Part Involunt",
@@ -212,7 +230,8 @@ base_homog_24 <- ecuador2024 %>%
                               p24 >= 35 ~ "Full Time"), 
     PRECAPT = case_when(part.time.inv == "Part Involunt"~1,
                         part.time.inv %in%  c("Part Volunt","Full Time")~0),
-    PRECATEMP = NA,
+    PRECATEMP = case_when(p43 %in% 1:2 ~ 0,
+                          p43 %in% 3:6 ~ 1),
     # tiempo.determinado = case_when(
     #   Estabili == 10 ~ "No",
     #   Estabili != 10 ~ "Si"),
@@ -235,6 +254,8 @@ base_homog_24 <- ecuador2024 %>%
                      p10a %in% 6:7 ~ "Secundaria",
                      p10a %in% 8:10 ~ "Terciaria"
     ),
+    HORAS_PPAL = p51a,
+    HORAS_OTRAS =p51b+p51c
   ) %>% 
   rename(
     WEIGHT = fexp,
@@ -245,7 +266,7 @@ base_homog_24 <- ecuador2024 %>%
 base_homog_24 <- base_homog_24 %>% 
   select(all_of(variables))
 
-saveRDS(base_homog_24,file = "bases_homog/ecuador_24.rds")
+saveRDS(base_homog_24,file = "bases_homog/ecuador_2024.rds")
 ##Base Indicadores####
 ec.categ <- ecuador2019 %>% 
   mutate(uno = 1) %>% 

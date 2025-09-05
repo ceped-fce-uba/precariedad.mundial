@@ -28,14 +28,14 @@ Variables1719  <- c("CODUSU","NRO_HOGAR","COMPONENTE","ANO4","TRIMESTRE" ,"AGLOM
     "CH04", "CH06","CH08","CH12","CH13","CH14","CH15","CH16","CH15_COD","ESTADO","CAT_OCUP","INTENSI",
     "PP04A", "PP04B_COD","PP07H","P21","PONDERA","PP04D_COD","PP04C","PP04B1",
     "PP07A","PP07C","PP05B2_ANO","PP04B3_ANO","PP07E","NIVEL_ED","PONDIIO","DECOCUR",
-    "PP11D_COD","PP04C","PP04C99","PP03G","PP3E_TOT")
+    "PP11D_COD","PP04C","PP04C99","PP03G","PP3E_TOT","PP3F_TOT")
   
   
 Variables0814  <- c("CODUSU","NRO_HOGAR","COMPONENTE","ANO4","TRIMESTRE" ,"AGLOMERADO","H15",
                       "CH04", "CH06","CH08","CH12","CH13","CH14","CH15","ESTADO","CAT_OCUP","INTENSI",
                       "PP04A", "PP04B_COD","PP07H","P21","PONDERA","PP04D_COD","PP04B_CAES","PP04C",
                       "PP07A","PP07C","PP05B2_ANO","PP04B3_ANO","PP07E","NIVEL_ED","DECOCUR",
-                      "PP11D_COD","PP04C","PP04C99","PP03G","PP3E_TOT")
+                      "PP11D_COD","PP04C","PP04C99","PP03G","PP3E_TOT","PP3F_TOT")
 
 bases_bind <- bind_rows(
 Base_ARG0814 %>% select(Variables0814),
@@ -164,6 +164,8 @@ base_homog <- bases %>%
                          CAT_OCUP == 3 ~ "Asalariados",
                          CAT_OCUP == 1 ~ "Patron",
                          TRUE ~ "Resto"),
+    HORAS_PPAL = ifelse(PP3E_TOT == 999,yes = NA,no = PP3E_TOT),
+    HORAS_OTRAS = ifelse(PP3F_TOT == 999,yes = NA,no = PP3F_TOT),
     part.time.inv = case_when(ESTADO == 1 & PP3E_TOT < 35 & PP03G == 1 ~ "Part Involunt",
                               ESTADO == 1 & PP3E_TOT < 35 & PP03G == 2 ~"Part Volunt",
                               ESTADO == 1 & PP3E_TOT >= 35  ~"Full Time",
@@ -185,11 +187,11 @@ base_homog <- bases %>%
 variables<- c("PAIS","ANO","PERIODO","WEIGHT","SEXO","EDAD",
               "CATOCUP","COND","SECTOR","PRECAPT","EDUC",
               "MIGRA_INT","MIGRA_RECIENTE","MIGRA_ORIGEN",
-              "PRECAREG","PRECATEMP","PRECASALUD","PRECASEG","TAMA","CALIF","ING","WEIGHT_W") 
+              "PRECAREG","PRECATEMP","PRECASALUD","PRECASEG","TAMA","CALIF","ING","HORAS_PPAL","HORAS_OTRAS","WEIGHT_W") 
 base_homog_final <- base_homog %>% 
   select(all_of(variables))
 
-saveRDS(base_homog_final %>% filter(ANO == 2019),file = "bases_homog/argentina.rds")
+saveRDS(base_homog_final %>% filter(ANO == 2019),file = "bases_homog/argentina_2019.rds")
 saveRDS(base_homog_final %>% filter(ANO == 2024),file = "bases_homog/argentina_2024.rds")
 
 ####ARG categorias####
