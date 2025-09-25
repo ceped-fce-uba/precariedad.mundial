@@ -59,7 +59,9 @@ Base <- Base %>%
       VD4031 < 35 & VD4031 > 0 & V4063A == "Sim" ~ 1,               
       VD4031 < 35 & VD4031 > 0 & V4063A == "Não" ~ 0, 
       VD4031 > 34 ~ 0),
-    PRECATEMP = NA,        
+    PRECATEMP = case_when(
+      V4025 == "Sim" ~ 1,
+      V4025 == "Não" ~ 0),        
     PRECASEG = case_when(
       VD4012 == "Não contribuinte" ~ 1,          
       VD4012 == "Contribuinte" ~ 0),
@@ -82,6 +84,6 @@ Base <- Base %>%
                     "Profissionais das ciências e intelectuais",
                     "Diretores e gerentes") ~ "Alta"), 
     ING = VD4016) %>% 
-  select(variables)
+  select(all_of(variables))
 
 saveRDS(Base, "bases_homog/brasil.rds")
