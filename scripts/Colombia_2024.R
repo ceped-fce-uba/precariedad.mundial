@@ -87,4 +87,4 @@ for (month in months) {
 
 ocupados_completo <- bind_rows(combined_by_month)
 
-write_rds(ocupados_completo, file = here("Colombia_2024.RDS"))
+write_rds(ocupados_completo, file = here("Bases/Colombia_2024.RDS"))

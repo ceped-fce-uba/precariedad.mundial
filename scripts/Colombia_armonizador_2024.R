@@ -64,8 +64,9 @@ base_homog <- df %>%
                 P3042 %in% 5:7 ~ "Secundaria",
                 P3042 %in% 8:13 ~ "Terciaria"),
     PRECASALUD = NA, # Queda pendiente buscar si ahora sí hay algo
-    ING = INGLABO # no sé qué es esto
-  ) 
+    ING = INGLABO, # no sé qué es esto
+    PERIODO = paste0(PER,"-",MES) # Sobreescribiendo la variable original, que tiene año, mes y semana del año
+  )
 
 # Puede ser interesante ir a mirar P1879 (50A. ¿Cuál es la razón principal por la que trabaja en forma independiente en lugar de trabajar para un empleador o patrono ?)
 
