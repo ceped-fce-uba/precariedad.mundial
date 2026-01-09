@@ -4,7 +4,7 @@ library(tidyverse)
 library(openxlsx)
 library(haven)
 
-rutas <- list.files("Bases_homog/",full.names = T,pattern = ".rds")
+rutas <- list.files("bases_homog/",full.names = T,pattern = ".rds")
 Base <- data.frame()
 
 for(i in rutas[c(1,3:9,11:18)]){
@@ -18,9 +18,9 @@ print(i)
 table(Base$ANO,Base$PAIS)
 
 # Fuentes complementarias ####
-Paises <- read.xlsx("Fuentes Complementarias/Prod y Salarios.xlsx",
+Paises <- read.xlsx("fuentes_complementarias/Prod y Salarios.xlsx",
                     sheet = "Paises") 
-IPC_2005 <- read.xlsx("Fuentes Complementarias/Prod y Salarios.xlsx",
+IPC_2005 <- read.xlsx("fuentes_complementarias/Prod y Salarios.xlsx",
                       sheet = "IPC (2005)") %>%
   rename(ANO4 = X1)%>%
   pivot_longer(cols = 2:ncol(.),
@@ -28,7 +28,7 @@ IPC_2005 <- read.xlsx("Fuentes Complementarias/Prod y Salarios.xlsx",
                values_to = "IPC_2005") %>%
   mutate(nombre.pais = str_replace_all(nombre.pais,"[[:punct:] ]+",replacement = " "))
 
-PPA_WB <- read.csv("Fuentes Complementarias/PPA.csv") %>%
+PPA_WB <- read.csv("fuentes_complementarias/PPA.csv") %>%
   rename(COD.OCDE = Country.Code) %>%
   filter(Classification.Code == "PPPGlob",Series.Code == 9020000) %>%
   pivot_longer(cols = 7:ncol(.),
