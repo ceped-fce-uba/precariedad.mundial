@@ -23,24 +23,24 @@ El repositorio está organizado de la siguiente manera:
 
 ## Encuestas procesadas
 
-| País           | Encuesta                                                                                  | Año utilizado |
+| País           | Encuesta                                                                                  | Años disponibles|
 |----------------|-------------------------------------------------------------------------------------------|---------------|
-| Argentina      | Encuesta Permanente de Hogares                                                             | [2019](Bases_homog/argentina_2019.rds)          |
-| Bolivia        | Encuesta Continua de Empleo                                                                | 2019          |
-| Brasil         | Pesquisa Nacional por Amostra de Domicílios Contínua - PNAD Contínua                       | 2019          |
-| Chile          | Encuesta Nacional de Empleo (ENE) – módulo Encuesta Suplementaria de Ingresos (ESI)        | 2019          |
-| China          | Chinese Household Income Project (CHIP)                                                    | 2018          |
-| Colombia       | Gran Encuesta Integrada de Hogares - GEIH                                                  | 2019          |
-| Costa Rica     | Encuesta Nacional de Hogares                                                               | 2019          |
-| Ecuador        | Encuesta Nacional de Empleo, Desempleo y Subempleo (ENEMDU)                                | 2019          |
-| El Salvador    | Encuesta Nacional de Hogares                                                               | 2019          |
-| Estados Unidos | Current Population Survey                                                                  | 2018          |
-| Europa         | Eurostat Labour Force Survey (LFS)                                                         | 2018          |
-| Guatemala      | Encuesta Nacional de Empleo e Ingresos                                                     | 2019          |
-| Mexico         | Encuesta Nacional de Ocupación y Empleo                                                    | 2019          |
-| Paraguay       | Encuesta Permanente de Hogares Continua                                                    | 2019          |
-| Perú           | Encuesta Nacional de Hogares                                                               | 2019          |
-| Uruguay        | Encuesta Continua de Hogares                                                               | 2019          |
+| Argentina      | Encuesta Permanente de Hogares                                                             | [2019](bases_homog/argentina_2019.rds), [2024](bases_homog/argentina_2024.rds)          |
+| Bolivia        | Encuesta Continua de Empleo                                                                | [2019](bases_homog/bolivia_2019.rds)          |
+| Brasil         | Pesquisa Nacional por Amostra de Domicílios Contínua - PNAD Contínua                       | [2019](bases_homog/brasil_2019.rds), [2024](bases_homog/brasil_2024.rds)          |
+| Chile          | Encuesta Nacional de Empleo (ENE) – módulo Encuesta Suplementaria de Ingresos (ESI)        | [2019](bases_homog/chile_2019.rds), [2024](bases_homog/chile_2024.rds)          |
+| China          | Chinese Household Income Project (CHIP)                                                    | [2018](bases_homog/china_2019.rds)          |
+| Colombia       | Gran Encuesta Integrada de Hogares - GEIH                                                  | [2019](bases_homog/colombia_2019.rds), [2024](bases_homog/colombia_2024.rds)          |
+| Costa Rica     | Encuesta Nacional de Hogares                                                               | [2019](bases_homog/costa_rica_2019.rds)          |
+| Ecuador        | Encuesta Nacional de Empleo, Desempleo y Subempleo (ENEMDU)                                | [2019](bases_homog/ecuador_2019.rds), [2024](bases_homog/ecuador_2024.rds)          |
+| El Salvador    | Encuesta Nacional de Hogares                                                               | [2019](bases_homog/el_salvador_2019.rds)          |
+| Estados Unidos | Current Population Survey                                                                  | [2018](bases_homog/estados_unidos_2019.rds)          |
+| Europa         | Eurostat Labour Force Survey (LFS)                                                         | [2018](bases_homog/europa_2019.rds)          |
+| Guatemala      | Encuesta Nacional de Empleo e Ingresos                                                     | [2019](bases_homog/guatemala_2019.rds)          |
+| Mexico         | Encuesta Nacional de Ocupación y Empleo                                                    | [2019](bases_homog/mexico_2019.rds)          |
+| Paraguay       | Encuesta Permanente de Hogares Continua                                                    | [2019](bases_homog/paraguay_2019.rds)          |
+| Perú           | Encuesta Nacional de Hogares                                                               | [2019](bases_homog/peru_2019.rds)          |
+| Uruguay        | Encuesta Continua de Hogares                                                               | [2019](bases_homog/uruguay_2019.rds), [2024](bases_homog/uruguay_2024.rds)          |
 
 
 ## Descripción del Dataframe
