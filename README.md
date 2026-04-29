@@ -1,25 +1,14 @@
 # Precariedad Mundial
 
-Este es el repositorio de datos para el procesamiento de encuestas de hogares, en el marco de la línea de trabajo sobre precariedad mundial del Centro de Estudios sobre Población, Empleo y Desarrollo (CEPED - IIEP – UBA). El proyecto **Precariedad Mundial** tiene como objetivo aportar argumentos y evidencias empíricas sobre la incidencia de la precariedad laboral a lo largo del mundo, como también fomentar el intercambio sobre criterios y enfoques para procesar estadísticas laborales. Este proyecto utiliza microdatos de encuestas de hogares de institutos de estadística oficiales de distintos países del mundo y los convierte en un dataframe unificado con información homogeneizada. Los datos unificados pueden descargarse desde el repositorio o haciendo [click aquí](https://github.com/ceped-fce-uba/precariedad.mundial/raw/master/base_homogenea.RDS?download=). También están disponibles la página de [Ejemplos de Uso](./docs/ejemplos_de_uso.html) y de [Aclaraciones metodológicas](./docs/aclaraciones_metodologicas.html).
+Este es el repositorio de datos para el procesamiento de encuestas de hogares, en el marco de la línea de trabajo sobre precariedad mundial del Centro de Estudios sobre Población, Empleo y Desarrollo (CEPED - IIEP – UBA). El proyecto **Precariedad Mundial** tiene como objetivo aportar argumentos y evidencias empíricas sobre la incidencia de la precariedad laboral a lo largo del mundo, como también fomentar el intercambio sobre criterios y enfoques para procesar estadísticas laborales. Este repositorio presenta un conjunto homogéneo de bases de datos con variables socio-laborales a partir del procesamiento de microdatos de encuestas de hogares de institutos de estadística oficiales de distintos países del mundo. 
 
-Si utilizas información de este proyecto, agradecemos que cites este repositorio o alguna de nuestras publicaciones:
+Si utilizas información de este proyecto, agradecemos que cites alguna de nuestras publicaciones:
 
 - [*La calidad del empleo en la Argentina reciente: un análisis sobre su relación con la calificación y el tamaño de las unidades productivas en perspectiva comparada* J Graña, G Weksler, F Lastra *Trabajo y Sociedad 38, 423-446*](https://www.unse.edu.ar/trabajoysociedad/38%20GRANA%20ET%20ALT%20La%20calidad%20del%20empleo%20en%20la%20Argentina.pdf)
 
 - [*Calidad del empleo y estructura del mercado de trabajo en América Latina desde una perspectiva comparada* S Fernández-Franco, JM Graña, F Lastra, G Weksler *Ensayos de Economía 32 (61), 124-151*](https://doi.org/10.15446/ede.v32n61.100343)
 
-## Estructura del Repositorio
-
-El repositorio está organizado de la siguiente manera:
-
-- **base_homogenea.RDS**: Dataset principal con información homogénea de todos los países trabajados
-- **Metadata.xlsx**: Documento que describe los criterios utilizados para la creación de variables de la base homogeneizada
-- **\bases**: carpeta para almacenar bases de microdatos en el formato de publicación del instituto de estadística de cada país
-- **\scripts**: scripts utilizados para transformar los datos por país de \bases en dataframes con datos homogéneos que se guardan en \bases_homog
-- **\bases_homog**: carpeta para almacenar bases homogéneas por país
-- **\genera_base_homogenea.R**: unifica toda la información procesada por país en un único dataframe
-- **\Fuentes Complementarias**: archivos complementarios para procesar la información por país (clasificadores de ocupaciones, coeficientes de paridad de poder adquisitivo, entre otros)
-
+El siguiente cuadro presenta las bases disponibles con un enlace para la descarga. También se pone a disposición una página con [Aclaraciones metodológicas](./docs/aclaraciones_metodologicas.html) y otra con [Ejemplos de Uso](./docs/ejemplos_de_uso.html).
 
 ## Encuestas procesadas
 
@@ -70,6 +59,19 @@ Las encuestas de cada país son filtradas para obtener información para el tota
 
 
 ¡Gracias por utilizar nuestro repositorio! Si tienes alguna pregunta o sugerencia, no dudes en contactarnos. También podés proponer modificaciones al código mediante un issue al repositorio. 
+
+## Estructura del Repositorio
+
+El repositorio está organizado de la siguiente manera:
+
+- **base_homogenea.RDS**: Dataset principal con información homogénea de todos los países trabajados
+- **Metadata.xlsx**: Documento que describe los criterios utilizados para la creación de variables de la base homogeneizada
+- **\bases**: carpeta para almacenar bases de microdatos en el formato de publicación del instituto de estadística de cada país
+- **\scripts**: scripts utilizados para transformar los datos por país de \bases en dataframes con datos homogéneos que se guardan en \bases_homog
+- **\bases_homog**: carpeta para almacenar bases homogéneas por país
+- **\genera_base_homogenea.R**: unifica toda la información procesada por país en un único dataframe
+- **\Fuentes Complementarias**: archivos complementarios para procesar la información por país (clasificadores de ocupaciones, coeficientes de paridad de poder adquisitivo, entre otros)
+
 
 # Repository precariedad.mundial
 
