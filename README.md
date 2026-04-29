@@ -25,7 +25,7 @@ El repositorio está organizado de la siguiente manera:
 
 | País           | Encuesta                                                                                  | Año utilizado |
 |----------------|-------------------------------------------------------------------------------------------|---------------|
-| Argentina      | Encuesta Permanente de Hogares                                                             | 2019          |
+| Argentina      | Encuesta Permanente de Hogares                                                             | [2019](Bases_homog/argentina_2019.rds)          |
 | Bolivia        | Encuesta Continua de Empleo                                                                | 2019          |
 | Brasil         | Pesquisa Nacional por Amostra de Domicílios Contínua - PNAD Contínua                       | 2019          |
 | Chile          | Encuesta Nacional de Empleo (ENE) – módulo Encuesta Suplementaria de Ingresos (ESI)        | 2019          |
